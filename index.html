@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hialeah Venture Studio — Stop pitching. Start building.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   HIALEAH VENTURE STUDIO — Landing Page (founder-facing)
+   ============================================================ */
+
+:root {
+  --ink: #0a0908;
+  --ink-2: #14100e;
+  --ink-3: #1c1814;
+  --bone: #f5f1e8;
+  --bone-2: #e8e0d0;
+  --steel: #6b6256;
+  --steel-2: #3a342d;
+  --heat: #ff4a1c;
+  --heat-2: #ffb341;
+  --ember: #c7341a;
+  --line: rgba(245, 241, 232, 0.12);
+  --line-2: rgba(245, 241, 232, 0.25);
+
+  --f-display: "Instrument Serif", "Times New Roman", serif;
+  --f-sans: "Space Grotesk", "Helvetica Neue", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--f-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 74, 28, 0.09), transparent 55%),
+    var(--ink);
+}
+
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none;
+  z-index: 999; opacity: 0.035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+::selection { background: var(--heat); color: var(--ink); }
+
+.mono { font-family: var(--f-mono); letter-spacing: 0.04em; font-size: 11px; text-transform: uppercase; }
+.serif { font-family: var(--f-display); font-weight: 400; font-style: italic; }
+.heat-text { color: var(--heat); }
+
+h1,h2,h3 { font-weight: 400; letter-spacing: -0.02em; line-height: 0.95; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--heat);
+}
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--heat); }
+
+/* ---------- NAV ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 36px;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(14px);
+  background: rgba(10, 9, 8, 0.7);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--bone); }
+.nav-brand-mark {
+  width: 22px; height: 22px; background: var(--heat); position: relative;
+  flex-shrink: 0;
+}
+.nav-brand-mark::before { content: ""; position: absolute; inset: 4px; background: var(--ink); }
+.nav-brand-mark::after { content: ""; position: absolute; inset: 8px; background: var(--heat); }
+.nav-links { display: flex; gap: 28px; color: var(--bone-2); }
+.nav-links span { cursor: pointer; transition: color 0.2s; }
+.nav-links span:hover { color: var(--heat); }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.nav-pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--heat); box-shadow: 0 0 12px var(--heat);
+  animation: pulse 2s ease-in-out infinite;
+}
+.nav-cta {
+  color: var(--heat); text-decoration: none;
+  padding: 8px 14px; border: 1px solid var(--heat);
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--heat); color: var(--ink); }
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+@media (max-width: 900px) { .nav-links { display: none; } .nav { padding: 14px 18px; } }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 48px 60px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  overflow: hidden;
+}
+@media (max-width: 780px) { .hero { padding: 100px 20px 40px; } }
+
+.hero-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+.hero-top {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 32px; flex-wrap: wrap;
+}
+.hero-top-meta {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--steel); line-height: 1.8;
+}
+.hero-top-meta strong { color: var(--bone); font-weight: 400; }
+
+.hero-title {
+  position: relative; z-index: 2; margin: 40px 0 20px;
+  font-weight: 500;
+  font-size: clamp(72px, 15vw, 240px);
+  line-height: 0.88; letter-spacing: -0.04em;
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .word { display: inline-block; }
+.hero-title .serif { color: var(--heat); font-weight: 400; letter-spacing: -0.02em; }
+
+.hero-bottom {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px; align-items: end;
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+}
+@media (max-width: 900px) { .hero-bottom { grid-template-columns: 1fr 1fr; } }
+.hero-stat-label { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); margin-bottom: 12px; }
+.hero-stat-val { font-family: var(--f-display); font-style: italic; font-size: clamp(36px, 4vw, 56px); line-height: 1; }
+.hero-stat-val .num { font-style: normal; font-family: var(--f-sans); font-weight: 500; color: var(--heat); }
+.hero-stat-sub { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel-2); margin-top: 10px; }
+.hero-pitch { max-width: 460px; font-size: 15px; color: var(--bone-2); line-height: 1.55; }
+
+.hero-cta-row {
+  position: relative; z-index: 2;
+  margin-top: 40px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 20px 30px;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--line-2);
+  background: transparent; color: var(--bone);
+  cursor: pointer; text-decoration: none;
+  transition: all 0.3s;
+}
+.btn:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+.btn.primary { background: var(--heat); color: var(--ink); border-color: var(--heat); }
+.btn.primary:hover { background: var(--bone); border-color: var(--bone); }
+.btn .arrow { transition: transform 0.3s; display: inline-block; }
+.btn:hover .arrow { transform: translateX(6px); }
+
+/* ---------- Ticker ---------- */
+.ticker {
+  position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  overflow: hidden; white-space: nowrap; background: var(--ink); padding: 18px 0;
+}
+.ticker-track {
+  display: inline-block; animation: tickerSlide 55s linear infinite;
+  font-family: var(--f-display); font-style: italic;
+  font-size: clamp(36px, 5vw, 72px); letter-spacing: -0.02em;
+}
+.ticker-track span { margin: 0 40px; color: var(--bone); }
+.ticker-track .heat { color: var(--heat); }
+.ticker-track .dot {
+  display: inline-block; width: 10px; height: 10px;
+  background: var(--heat); border-radius: 50%;
+  margin: 0 30px; transform: translateY(-8px);
+}
+@keyframes tickerSlide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---------- Thesis / Problem ---------- */
+.problem {
+  position: relative;
+  padding: 180px 48px 140px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 780px) { .problem { padding: 100px 24px; } }
+
+.problem-header {
+  max-width: 1440px; margin: 0 auto 80px;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+}
+@media (max-width: 900px) { .problem-header { grid-template-columns: 1fr; gap: 40px; } }
+.problem-hed {
+  font-weight: 500; font-size: clamp(44px, 7vw, 120px);
+  line-height: 0.9; letter-spacing: -0.03em;
+}
+.problem-hed .serif { color: var(--heat); }
+.problem-copy { font-size: 18px; line-height: 1.55; color: var(--bone-2); max-width: 460px; align-self: end; }
+
+.problem-70 {
+  max-width: 1440px; margin: 0 auto 80px;
+  padding: 60px 0;
+  border-top: 1px solid var(--heat); border-bottom: 1px solid var(--heat);
+  display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: center;
+}
+@media (max-width: 780px) { .problem-70 { grid-template-columns: 1fr; } }
+.problem-70-num {
+  font-weight: 500; font-size: clamp(120px, 26vw, 460px);
+  line-height: 0.85; color: var(--heat); letter-spacing: -0.06em;
+}
+.problem-70-copy {
+  font-family: var(--f-display); font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.25; color: var(--bone);
+}
+
+.gap-grid {
+  max-width: 1440px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) { .gap-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .gap-grid { grid-template-columns: 1fr; } }
+.gap-cell {
+  padding: 40px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-height: 240px; transition: background 0.4s;
+}
+.gap-cell:last-child { border-right: none; }
+@media (max-width: 900px) { .gap-cell:nth-child(2) { border-right: none; } }
+.gap-cell:hover { background: var(--ink-3); }
+.gap-cell-num { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--heat); margin-bottom: 20px; }
+.gap-cell-h { font-family: var(--f-display); font-style: italic; font-size: 32px; margin-bottom: 14px; }
+.gap-cell-p { font-size: 14px; color: var(--bone-2); line-height: 1.55; }
+
+/* ---------- FACILITY intro ---------- */
+.facility {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+.facility-intro {
+  max-width: 1440px; margin: 0 auto;
+  padding: 140px 48px 40px;
+}
+@media (max-width: 780px) { .facility-intro { padding: 80px 24px 30px; } }
+.facility-hed {
+  font-weight: 500; font-size: clamp(48px, 9vw, 160px);
+  line-height: 0.88; letter-spacing: -0.04em; margin-top: 24px;
+}
+.facility-hed .serif { color: var(--heat); }
+.facility-lede {
+  margin-top: 28px; max-width: 60ch;
+  font-size: 17px; color: var(--bone-2); line-height: 1.55;
+}
+
+/* ---------- AXONOMETRIC SCENE ---------- */
+.axo-scene {
+  height: 550vh;
+  position: relative;
+  margin-top: 60px;
+}
+.axo-pin {
+  position: sticky; top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+@media (max-width: 900px) { .axo-pin { grid-template-columns: 1fr; } }
+
+.axo-stage {
+  position: relative;
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 35% 70%, rgba(255, 74, 28, 0.08), transparent 60%),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+}
+@media (max-width: 900px) { .axo-stage { height: 50vh; border-right: none; border-bottom: 1px solid var(--line); } }
+
+.axo-svg {
+  width: 100%; height: 100%;
+  display: block;
+}
+.axo-svg .floor-shape {
+  stroke: var(--line-2); stroke-width: 1.2;
+  fill: rgba(20, 16, 14, 0.88);
+  transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.axo-svg .floor-shape.side { fill: rgba(10, 9, 8, 0.94); }
+.axo-svg .floor-shape.top { fill: rgba(30, 24, 20, 0.94); }
+.axo-svg .floor-shape.active {
+  fill: rgba(40, 22, 14, 0.96);
+  stroke: var(--heat);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 14px rgba(255, 74, 28, 0.4));
+}
+.axo-svg .floor-shape.active.side { fill: rgba(30, 10, 4, 0.96); }
+.axo-svg .floor-shape.active.top  { fill: rgba(60, 30, 14, 0.96); }
+.axo-svg .floor-detail { stroke: var(--line-2); stroke-width: 0.8; fill: none; opacity: 0.6; }
+.axo-svg .floor-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: 0.18em;
+  fill: var(--steel); text-transform: uppercase;
+}
+.axo-svg .floor-label.active { fill: var(--heat); }
+.axo-svg .floor-number {
+  font-family: "Instrument Serif", serif;
+  font-style: italic; font-size: 28px;
+  fill: var(--bone); opacity: 0.55;
+}
+.axo-svg .floor-number.active { fill: var(--heat); opacity: 1; }
+.axo-svg .ground-line { stroke: var(--heat); stroke-width: 1; opacity: 0.6; }
+.axo-svg .ground-grid { stroke: var(--line); stroke-width: 0.6; }
+
+/* Small animated dots: drones / crates moving */
+.axo-svg .drone { fill: var(--heat); }
+.axo-svg .crate { fill: var(--bone); opacity: 0.5; }
+
+.axo-label {
+  position: absolute;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--steel);
+  line-height: 1.8;
+}
+.axo-label-corner { top: 32px; left: 32px; }
+.axo-label-title {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 20px; color: var(--bone); letter-spacing: 0;
+  text-transform: none; margin: 4px 0 2px;
+}
+.axo-label-sub { color: var(--steel-2); }
+.axo-label-progress {
+  bottom: 32px; right: 32px;
+  text-align: right;
+}
+.axo-label-progress span:first-child {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 40px; color: var(--heat);
+  letter-spacing: 0; text-transform: none;
+  display: block; line-height: 1;
+}
+
+.axo-info {
+  position: relative; padding: 48px;
+  overflow: hidden; background: var(--ink);
+}
+@media (max-width: 780px) { .axo-info { padding: 24px; } }
+
+.tower-info-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px; margin-bottom: 30px;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--steel);
+}
+.floor-card {
+  position: absolute;
+  top: 120px; left: 48px; right: 48px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.4s, transform 0.4s;
+  pointer-events: none;
+}
+.floor-card.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.floor-card-n {
+  font-family: var(--f-display); font-style: italic;
+  font-size: clamp(80px, 12vw, 200px); line-height: 0.85;
+  color: var(--heat); letter-spacing: -0.04em;
+}
+.floor-card-name {
+  font-weight: 500; font-size: clamp(28px, 3.2vw, 48px);
+  line-height: 1; letter-spacing: -0.02em; margin: 16px 0 24px;
+}
+.floor-card-desc {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 20px; color: var(--bone-2);
+  max-width: 40ch; margin-bottom: 24px; line-height: 1.35;
+}
+.floor-card-list { list-style: none; border-top: 1px solid var(--line); }
+.floor-card-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.floor-card-list li .t { color: var(--bone); }
+.floor-card-list li .v { color: var(--steel); }
+
+.axo-hint {
+  position: absolute; bottom: 32px; left: 48px; right: 48px;
+  display: flex; justify-content: space-between;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--steel);
+  pointer-events: none;
+}
+.axo-hint .heat { color: var(--heat); }
+@media (max-width: 780px) { .axo-hint { left: 24px; right: 24px; bottom: 20px; } }
+
+/* ---------- Equipment ---------- */
+.equip-block {
+  max-width: 1440px; margin: 0 auto;
+  padding: 120px 48px 140px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 780px) { .equip-block { padding: 60px 24px 80px; } }
+.equip-grid {
+  margin-top: 36px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) { .equip-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .equip-grid { grid-template-columns: 1fr; } }
+.equip-cell {
+  padding: 32px 24px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s;
+}
+.equip-cell:hover { background: var(--ink-2); }
+.equip-cell:hover .equip-n { color: var(--heat); }
+.equip-cell:nth-child(4n) { border-right: none; }
+@media (max-width: 900px) {
+  .equip-cell { border-right: 1px solid var(--line); }
+  .equip-cell:nth-child(4n) { border-right: 1px solid var(--line); }
+  .equip-cell:nth-child(2n) { border-right: none; }
+}
+.equip-k { font-family: var(--f-mono); font-size: 10px; color: var(--heat); letter-spacing: 0.2em; margin-bottom: 18px; }
+.equip-n { font-family: var(--f-display); font-style: italic; font-size: 26px; transition: color 0.3s; }
+.equip-v { font-family: var(--f-mono); font-size: 11px; color: var(--steel); margin-top: 6px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ---------- SPRINT (horizontal scroll) ---------- */
+.sprint { position: relative; border-top: 1px solid var(--line); background: var(--ink); }
+.sprint-intro { max-width: 1440px; margin: 0 auto; padding: 140px 48px 40px; }
+@media (max-width: 780px) { .sprint-intro { padding: 80px 24px 30px; } }
+.sprint-hed {
+  font-weight: 500; font-size: clamp(48px, 9vw, 160px);
+  line-height: 0.88; letter-spacing: -0.04em;
+  margin-top: 24px; max-width: 14ch;
+}
+.sprint-hed .heat { color: var(--heat); }
+.sprint-hed .serif { font-family: var(--f-display); font-style: italic; }
+.sprint-sub {
+  margin-top: 40px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
+  border-top: 1px solid var(--line); padding-top: 30px;
+}
+@media (max-width: 780px) { .sprint-sub { grid-template-columns: 1fr; } }
+.sprint-sub-item strong {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 40px; color: var(--heat); font-weight: 400;
+  display: block; margin-bottom: 6px;
+}
+.sprint-sub-item span { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bone-2); }
+
+.sprint-track-wrap { height: 500vh; position: relative; }
+.sprint-track-pin {
+  position: sticky; top: 0; height: 100vh;
+  overflow: hidden; display: flex; flex-direction: column; justify-content: center;
+}
+.sprint-track-head {
+  padding: 0 48px 30px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--steel);
+}
+.sprint-track-head .heat { color: var(--heat); }
+.sprint-track { display: flex; height: 60vh; will-change: transform; padding: 0 48px; }
+.sprint-step {
+  flex: 0 0 58vw; padding: 0 40px;
+  border-left: 1px solid var(--line);
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+}
+.sprint-step:first-child { border-left: 1px solid var(--heat); }
+.sprint-step-n { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--heat); }
+.sprint-step-days {
+  font-weight: 500; font-size: clamp(60px, 10vw, 180px);
+  line-height: 0.9; letter-spacing: -0.04em; margin: 20px 0;
+}
+.sprint-step-days.heat { color: var(--heat); }
+.sprint-step-title { font-family: var(--f-display); font-style: italic; font-size: clamp(28px, 3vw, 44px); margin-bottom: 16px; }
+.sprint-step-desc { font-size: 15px; color: var(--bone-2); max-width: 42ch; line-height: 1.55; }
+.sprint-step-tag {
+  position: absolute; top: 0; right: 40px;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--steel); text-transform: uppercase;
+}
+.sprint-step-tag.heat { color: var(--heat); }
+.sprint-progress { margin-top: 40px; padding: 0 48px; display: flex; align-items: center; gap: 20px; }
+.sprint-progress-bar { flex: 1; height: 1px; background: var(--line); position: relative; }
+.sprint-progress-bar::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--heat); width: var(--sp, 0%);
+  transition: width 0.15s linear;
+}
+.sprint-progress-num { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--heat); min-width: 60px; text-align: right; }
+
+/* ---------- SECTORS ---------- */
+.sectors { border-top: 1px solid var(--line); padding: 140px 48px; background: var(--ink); }
+@media (max-width: 780px) { .sectors { padding: 80px 24px; } }
+.sectors-inner { max-width: 1440px; margin: 0 auto; }
+.sectors-hed {
+  font-weight: 500; font-size: clamp(44px, 7vw, 120px);
+  line-height: 0.9; letter-spacing: -0.03em; margin: 24px 0 60px;
+}
+.sectors-hed .serif { color: var(--heat); }
+.sectors-table {
+  display: grid;
+  grid-template-columns: 1.1fr 2.2fr 1.8fr 0.9fr;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) { .sectors-table { grid-template-columns: 1fr; } }
+.sectors-th {
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--steel); background: var(--ink-2);
+}
+@media (max-width: 900px) { .sectors-th { display: none; } }
+.sectors-row { display: contents; }
+.sectors-cell {
+  padding: 32px 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px; line-height: 1.55; color: var(--bone-2);
+  transition: background 0.3s;
+}
+.sectors-row:hover .sectors-cell { background: var(--ink-2); }
+.sectors-cell.name { font-family: var(--f-display); font-style: italic; font-size: 26px; color: var(--bone); }
+@media (max-width: 900px) {
+  .sectors-cell { border-bottom: none; padding: 8px 0; }
+  .sectors-cell.name { padding-top: 24px; }
+  .sectors-row:last-of-type .sectors-cell:last-child { border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+}
+
+/* ---------- THE DEAL ---------- */
+.economics { border-top: 1px solid var(--line); padding: 140px 48px; background: var(--ink-2); }
+@media (max-width: 780px) { .economics { padding: 80px 24px; } }
+.economics-inner { max-width: 1440px; margin: 0 auto; }
+.economics-hed {
+  font-weight: 500; font-size: clamp(44px, 7vw, 120px);
+  line-height: 0.9; letter-spacing: -0.03em; margin: 24px 0 60px;
+}
+.economics-hed .serif { color: var(--heat); }
+
+.deal-grid {
+  display: grid; grid-template-columns: 1fr 1px 1.4fr;
+  gap: 48px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 60px 0; align-items: center;
+}
+@media (max-width: 900px) { .deal-grid { grid-template-columns: 1fr; gap: 32px; } .deal-divider { display: none; } }
+.deal-heading { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); margin-bottom: 20px; }
+.deal-you { text-align: left; }
+.deal-big {
+  font-weight: 500; font-size: clamp(120px, 18vw, 280px);
+  line-height: 0.85; color: var(--heat); letter-spacing: -0.06em;
+}
+.deal-sub { margin-top: 16px; font-family: var(--f-display); font-style: italic; font-size: 22px; color: var(--bone-2); max-width: 34ch; line-height: 1.35; }
+.deal-divider { background: var(--line); width: 1px; height: 80%; justify-self: center; }
+.deal-list { list-style: none; }
+.deal-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 16px; color: var(--bone);
+  display: flex; align-items: center; gap: 16px;
+  line-height: 1.45;
+}
+.deal-list li:last-child { border-bottom: none; }
+.deal-dot { width: 8px; height: 8px; background: var(--heat); flex-shrink: 0; }
+
+.deal-compare {
+  margin-top: 80px;
+  border: 1px solid var(--line);
+}
+.deal-compare-row {
+  display: grid; grid-template-columns: 1.3fr 1fr 1.4fr 1.2fr;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em;
+  color: var(--bone-2); text-transform: uppercase;
+  transition: background 0.3s;
+}
+.deal-compare-row:last-child { border-bottom: none; }
+.deal-compare-row.head { background: var(--ink-3); color: var(--steel); font-size: 10px; letter-spacing: 0.2em; }
+.deal-compare-row.us {
+  background: rgba(255, 74, 28, 0.08);
+  color: var(--bone);
+}
+.deal-compare-row.us strong {
+  color: var(--heat); font-family: var(--f-display); font-style: italic;
+  font-size: 18px; font-weight: 400; letter-spacing: 0; text-transform: none;
+}
+@media (max-width: 780px) {
+  .deal-compare-row { grid-template-columns: 1fr; gap: 6px; padding: 18px; }
+  .deal-compare-row.head { display: none; }
+}
+
+/* ---------- WHO WE LOOK FOR ---------- */
+.ideal {
+  border-top: 1px solid var(--line);
+  padding: 140px 48px;
+}
+@media (max-width: 780px) { .ideal { padding: 80px 24px; } }
+.ideal-inner { max-width: 1440px; margin: 0 auto; }
+.ideal-hed {
+  font-weight: 500; font-size: clamp(44px, 8vw, 140px);
+  line-height: 0.9; letter-spacing: -0.03em; margin: 24px 0 60px;
+}
+.ideal-hed .serif { color: var(--heat); }
+.ideal-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) { .ideal-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .ideal-grid { grid-template-columns: 1fr; } }
+.ideal-card {
+  padding: 36px 28px 32px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-height: 340px;
+  display: flex; flex-direction: column;
+  transition: background 0.4s;
+}
+.ideal-card:last-child { border-right: none; }
+@media (max-width: 900px) { .ideal-card:nth-child(2) { border-right: none; } }
+.ideal-card:hover { background: var(--ink-2); }
+.ideal-card-tag { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--heat); }
+.ideal-card-title {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 34px; line-height: 1.05;
+  margin: 24px 0 18px;
+}
+.ideal-card-body { font-size: 15px; color: var(--bone-2); line-height: 1.55; flex-grow: 1; }
+.ideal-card-meta {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--steel); text-transform: uppercase;
+  border-top: 1px solid var(--line); padding-top: 14px; margin-top: 24px;
+}
+
+.ideal-musts {
+  margin-top: 60px;
+  padding: 40px;
+  border: 1px solid var(--heat);
+  background: rgba(255, 74, 28, 0.03);
+}
+.ideal-musts-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--heat); margin-bottom: 24px; }
+.ideal-musts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 48px; }
+@media (max-width: 780px) { .ideal-musts-grid { grid-template-columns: 1fr; } }
+.ideal-musts-grid > div {
+  font-size: 16px; color: var(--bone); line-height: 1.5;
+  display: flex; gap: 16px;
+}
+.ideal-musts-grid strong {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 28px; color: var(--heat); font-weight: 400;
+  flex-shrink: 0; line-height: 1;
+}
+
+/* ---------- TIMELINE / APPLY ---------- */
+.timeline {
+  border-top: 1px solid var(--line);
+  padding: 140px 48px;
+  background: var(--ink-2);
+}
+@media (max-width: 780px) { .timeline { padding: 80px 24px; } }
+.timeline-inner { max-width: 1440px; margin: 0 auto; }
+.timeline-hed {
+  font-weight: 500; font-size: clamp(44px, 7vw, 120px);
+  line-height: 0.9; letter-spacing: -0.03em; margin: 24px 0 60px;
+}
+.timeline-hed .serif { color: var(--heat); }
+
+.timeline-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) { .timeline-track { grid-template-columns: 1fr; } }
+.tl-step {
+  padding: 36px 24px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 260px;
+  transition: background 0.3s;
+}
+.tl-step:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .tl-step { border-right: none; border-bottom: 1px solid var(--line); min-height: 0; }
+  .tl-step:last-child { border-bottom: none; }
+}
+.tl-step.heat { background: rgba(255, 74, 28, 0.06); }
+.tl-step.heat .tl-step-n { color: var(--heat); }
+.tl-step.heat .tl-step-when { color: var(--heat); }
+.tl-step:hover { background: var(--ink-3); }
+.tl-step-n {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 64px; color: var(--steel); line-height: 1;
+}
+.tl-step-title {
+  font-family: var(--f-sans); font-weight: 500;
+  font-size: 20px; line-height: 1.2;
+}
+.tl-step-body { font-size: 14px; color: var(--bone-2); line-height: 1.5; flex-grow: 1; }
+.tl-step-when {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em;
+  color: var(--steel); text-transform: uppercase;
+  padding-top: 14px; border-top: 1px solid var(--line);
+}
+
+/* ---------- WAITLIST ---------- */
+.waitlist {
+  margin-top: 80px;
+  display: grid; grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  padding: 60px;
+  border: 1px solid var(--line-2);
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.waitlist::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--heat);
+}
+@media (max-width: 900px) { .waitlist { grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; } }
+.waitlist-hed {
+  font-weight: 500; font-size: clamp(40px, 5vw, 64px);
+  line-height: 1; letter-spacing: -0.03em;
+}
+.waitlist-hed .serif { color: var(--heat); }
+.waitlist-sub {
+  margin-top: 20px; font-size: 16px; color: var(--bone-2);
+  line-height: 1.55; max-width: 40ch;
+}
+.waitlist-meta {
+  margin-top: 40px;
+  display: flex; flex-wrap: wrap; gap: 32px;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--steel); text-transform: uppercase;
+}
+.waitlist-meta strong { display: block; font-family: var(--f-display); font-style: italic; font-size: 28px; color: var(--heat); font-weight: 400; letter-spacing: 0; text-transform: none; margin-bottom: 4px; }
+
+.waitlist-form {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-content: start;
+}
+.wl-field { display: flex; flex-direction: column; gap: 8px; }
+.wl-field.span { grid-column: span 2; }
+.wl-field span {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--steel); text-transform: uppercase;
+}
+.wl-field input, .wl-field select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line-2);
+  color: var(--bone);
+  font-family: var(--f-sans);
+  font-size: 16px;
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.wl-field select { background: var(--ink); }
+.wl-field input:focus, .wl-field select:focus { border-color: var(--heat); }
+.wl-field input::placeholder { color: var(--steel-2); }
+.wl-btn { grid-column: span 2; width: fit-content; margin-top: 8px; }
+.wl-success {
+  grid-column: span 2;
+  display: none;
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.2em; color: var(--heat);
+  padding: 16px 0;
+}
+.wl-success.show { display: block; }
+
+/* ---------- FAQ ---------- */
+.faq { border-top: 1px solid var(--line); padding: 140px 48px; background: var(--ink); }
+@media (max-width: 780px) { .faq { padding: 80px 24px; } }
+.faq-inner { max-width: 1100px; margin: 0 auto; }
+.faq-hed { font-weight: 500; font-size: clamp(44px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.03em; margin: 24px 0 60px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0;
+}
+.faq-item summary {
+  list-style: none;
+  padding: 24px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--heat); }
+.faq-q { font-family: var(--f-display); font-style: italic; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.2; }
+.faq-toggle {
+  font-family: var(--f-mono); font-size: 20px; color: var(--heat);
+  transition: transform 0.3s;
+  width: 30px; text-align: right;
+}
+.faq-item[open] .faq-toggle { transform: rotate(45deg); }
+.faq-a {
+  padding: 0 0 28px;
+  font-size: 16px; color: var(--bone-2);
+  line-height: 1.6; max-width: 60ch;
+}
+
+/* ---------- CLOSE CTA ---------- */
+.close {
+  border-top: 1px solid var(--line);
+  padding: 180px 48px 80px;
+  position: relative; overflow: hidden;
+}
+@media (max-width: 780px) { .close { padding: 100px 24px 60px; } }
+.close-inner { max-width: 1440px; margin: 0 auto; position: relative; z-index: 2; }
+.close-hed {
+  font-weight: 500; font-size: clamp(56px, 13vw, 220px);
+  line-height: 0.85; letter-spacing: -0.04em; margin: 40px 0;
+}
+.close-hed .serif { color: var(--heat); display: block; }
+.close-hed .b { display: block; }
+.close-sub-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  border-top: 1px solid var(--line);
+  padding-top: 40px; margin-top: 40px;
+}
+@media (max-width: 900px) { .close-sub-grid { grid-template-columns: 1fr 1fr; } }
+.close-stat-l { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); margin-bottom: 10px; }
+.close-stat-v { font-family: var(--f-display); font-style: italic; font-size: clamp(28px, 3vw, 44px); line-height: 1; }
+.close-stat-v .num { font-style: normal; font-family: var(--f-sans); font-weight: 500; color: var(--heat); }
+.close-cta { margin-top: 80px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+/* ---------- FOOTER ---------- */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 36px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--steel);
+}
+@media (max-width: 780px) { .footer { padding: 24px; } }
+.footer-brand { display: flex; align-items: center; gap: 10px; color: var(--bone); }
+
+/* ---------- utility animation ---------- */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+::-webkit-scrollbar { width: 10px; background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--ink-3); }
+::-webkit-scrollbar-thumb:hover { background: var(--heat); }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+  <a class="nav-brand" href="#hero">
+    <div class="nav-brand-mark"></div>
+    <span>HIALEAH&nbsp;·&nbsp;VENTURE STUDIO</span>
+  </a>
+  <div class="nav-links">
+    <span data-to="thesis">The Studio</span>
+    <span data-to="facility">Facility</span>
+    <span data-to="sprint">Sprint</span>
+    <span data-to="sectors">Sectors</span>
+    <span data-to="deal">The Deal</span>
+    <span data-to="apply">Apply</span>
+  </div>
+  <div class="nav-right">
+    <div class="nav-pulse"></div>
+    <a href="#apply" class="nav-cta">Join the Waitlist →</a>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+
+  <div class="hero-top">
+    <div class="hero-top-meta">
+      <div>§ COHORT 01 / <strong>SUMMER 2026</strong></div>
+      <div>60 DAYS · HIALEAH, FL · 45,000 SQ FT</div>
+      <div>APPLICATIONS OPEN · ROLLING</div>
+    </div>
+    <div class="hero-top-meta" style="text-align:right">
+      <div>N 25.857° · W 80.278°</div>
+      <div>TEAMS 1–4 · AGES 18+</div>
+      <div class="heat-text">20 TEAMS / COHORT</div>
+    </div>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line"><span class="word">Stop</span></span>
+    <span class="line"><span class="word serif">pitching.</span></span>
+    <span class="line"><span class="word">Start</span></span>
+    <span class="line"><span class="word">building.</span></span>
+  </h1>
+
+  <div class="hero-bottom">
+    <div class="hero-pitch">
+      <div class="mono" style="color:var(--heat); margin-bottom:14px">§ FOR FOUNDERS WHO BUILD WITH THEIR HANDS</div>
+      A high-volume deep-tech venture studio for robotics, aerospace, AI hardware, defense, and medical devices. A 45,000 sq ft vertical factory, a specialist Ghost Lab crew, $1M+ of equipment — and you keep 95%.
+    </div>
+    <div>
+      <div class="hero-stat-label">WHAT IT COSTS YOU</div>
+      <div class="hero-stat-val"><span class="num">$0</span></div>
+      <div class="hero-stat-sub">Zero cash · 5% equity only</div>
+    </div>
+    <div>
+      <div class="hero-stat-label">HOW LONG</div>
+      <div class="hero-stat-val"><span class="num">60</span> days</div>
+      <div class="hero-stat-sub">Idea → functional prototype</div>
+    </div>
+    <div>
+      <div class="hero-stat-label">NEXT COHORT</div>
+      <div class="hero-stat-val serif">Summer<br/><span class="num" style="font-size:0.8em">’26</span></div>
+      <div class="hero-stat-sub">June 15 · Miami, FL</div>
+    </div>
+  </div>
+
+  <div class="hero-cta-row">
+    <a href="#apply" class="btn primary">Join the Waitlist <span class="arrow">→</span></a>
+    <a href="#thesis" class="btn ghost">What is this? <span class="arrow">↓</span></a>
+  </div>
+</section>
+
+<!-- ============================ TICKER ============================ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>STOP PITCHING · START BUILDING</span><span class="dot"></span>
+    <span class="heat">ROBOTICS · AEROSPACE · AI HARDWARE</span><span class="dot"></span>
+    <span>5% EQUITY · ZERO CASH</span><span class="dot"></span>
+    <span class="heat">120 COMPANIES / YEAR</span><span class="dot"></span>
+    <span>60 DAYS TO A PROTOTYPE</span><span class="dot"></span>
+    <span class="heat">APPLICATIONS OPEN</span><span class="dot"></span>
+    <span>STOP PITCHING · START BUILDING</span><span class="dot"></span>
+    <span class="heat">ROBOTICS · AEROSPACE · AI HARDWARE</span><span class="dot"></span>
+    <span>5% EQUITY · ZERO CASH</span><span class="dot"></span>
+    <span class="heat">120 COMPANIES / YEAR</span><span class="dot"></span>
+    <span>60 DAYS TO A PROTOTYPE</span><span class="dot"></span>
+    <span class="heat">APPLICATIONS OPEN</span><span class="dot"></span>
+  </div>
+</div>
+
+<!-- ============================ THESIS ============================ -->
+<section class="problem" id="thesis">
+  <div class="problem-header">
+    <div>
+      <div class="eyebrow">§ 01 / The Studio</div>
+      <h2 class="problem-hed">
+        You have the idea.<br/>
+        You don't have<br/>
+        <span class="serif">the factory.</span>
+      </h2>
+    </div>
+    <div>
+      <p class="problem-copy">
+        A working prototype for robotics, drones, medical devices or AI hardware needs $500K–$2M of capital equipment, industrial power, cleanrooms, and specialist technicians. None of it fits in a dorm room or a garage.
+      </p>
+      <p class="problem-copy" style="margin-top:18px">
+        Hialeah Venture Studio is a 60-day sprint inside a real vertical factory. You walk in with a napkin. You leave with a functional prototype, a cinematic launch reel, and a seat in front of the investors who fund hardware.
+      </p>
+    </div>
+  </div>
+
+  <div class="problem-70">
+    <div class="problem-70-num" data-counter="95" data-suffix="%">0%</div>
+    <div class="problem-70-copy">
+      of the equity stays in your hands. We take 5%. That's the deal. No tuition. No cash. No catch.
+    </div>
+  </div>
+
+  <div class="gap-grid">
+    <div class="gap-cell reveal">
+      <div class="gap-cell-num">01 / THE FACTORY</div>
+      <div class="gap-cell-h">45,000 sq ft</div>
+      <div class="gap-cell-p">Five purpose-built floors of CNC, PCB, cleanroom, drone cage, and AI compute. Open 24/7 for sixty days.</div>
+    </div>
+    <div class="gap-cell reveal">
+      <div class="gap-cell-num">02 / THE CREW</div>
+      <div class="gap-cell-h">Ghost Lab</div>
+      <div class="gap-cell-p">Eight specialist technicians — CNC, PCB, welding, FAA/FDA. They execute, you build. No teaching, no bootcamp vibes.</div>
+    </div>
+    <div class="gap-cell reveal">
+      <div class="gap-cell-num">03 / THE DEAL</div>
+      <div class="gap-cell-h">5% · zero cash</div>
+      <div class="gap-cell-p">No tuition, no lease, no equipment fees. You pay 5% equity. That's it. You keep the other 95%.</div>
+    </div>
+    <div class="gap-cell reveal">
+      <div class="gap-cell-num">04 / THE SHOT</div>
+      <div class="gap-cell-h">Demo Day</div>
+      <div class="gap-cell-p">A curated room of seed and Series A investors. Standout teams get extension contracts on the night.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FACILITY — AXONOMETRIC ============================ -->
+<section class="facility" id="facility">
+  <div class="facility-intro">
+    <div class="eyebrow">§ 02 / The Vertical Factory</div>
+    <h2 class="facility-hed">
+      A <span class="serif">vertical factory</span><br/>
+      engineered floor-by-floor.
+    </h2>
+    <p class="facility-lede">Scroll to assemble the building. Each floor is an execution environment — not a classroom.</p>
+  </div>
+
+  <!-- Axonometric scene -->
+  <div class="axo-scene" id="axoScene">
+    <div class="axo-pin">
+      <div class="axo-stage">
+        <svg class="axo-svg" viewBox="-400 -600 1200 1400" id="axoSvg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- Ground grid -->
+          <g class="axo-ground" id="axoGround"></g>
+          <!-- Floors get injected by JS -->
+          <g class="axo-floors" id="axoFloors"></g>
+          <!-- Drones/crates -->
+          <g class="axo-fx" id="axoFx"></g>
+        </svg>
+
+        <div class="axo-label axo-label-corner">
+          <div class="mono" style="color:var(--heat)">§ AXONOMETRIC</div>
+          <div class="axo-label-title">Hialeah Vertical Factory</div>
+          <div class="mono axo-label-sub">45,000 SQ FT · 5 FLOORS · NW 15TH AVE</div>
+        </div>
+        <div class="axo-label axo-label-progress">
+          <span id="axoProgress">00%</span>
+          <span class="axo-label-sub">ASSEMBLY</span>
+        </div>
+      </div>
+
+      <div class="axo-info">
+        <div class="tower-info-header">
+          <span>§ FLOOR SELECT</span>
+          <span class="heat" id="floorIdx">01 / 05</span>
+        </div>
+
+        <div class="floor-card active" data-floor="1">
+          <div class="floor-card-n">01</div>
+          <div class="floor-card-name">The Heavy Works</div>
+          <div class="floor-card-desc">"Metal enters the building here. Everything downstream depends on this floor."</div>
+          <ul class="floor-card-list">
+            <li><span class="t">CNC Mills · 5-axis</span><span class="v">02 bays</span></li>
+            <li><span class="t">Waterjet Cutting</span><span class="v">Omax 55100</span></li>
+            <li><span class="t">Metal &amp; Concrete 3D Print</span><span class="v">MX3D / D-Shape</span></li>
+            <li><span class="t">Welding Bays</span><span class="v">TIG · MIG · stick</span></li>
+          </ul>
+        </div>
+
+        <div class="floor-card" data-floor="2">
+          <div class="floor-card-n">02</div>
+          <div class="floor-card-name">Robotics &amp; Mechatronics Arena</div>
+          <div class="floor-card-desc">"Drones fly here. Cobots load here. Failure is cheap — the sandpit absorbs it."</div>
+          <ul class="floor-card-list">
+            <li><span class="t">Drone Flight Cage</span><span class="v">40ft enclosed</span></li>
+            <li><span class="t">Cobot Cells</span><span class="v">UR10e · FR3</span></li>
+            <li><span class="t">Terrain Rigs</span><span class="v">Sandpit · wet lab</span></li>
+            <li><span class="t">Motion Capture</span><span class="v">OptiTrack · 16 cam</span></li>
+          </ul>
+        </div>
+
+        <div class="floor-card" data-floor="3">
+          <div class="floor-card-n">03</div>
+          <div class="floor-card-name">Electronics &amp; Cleanroom</div>
+          <div class="floor-card-desc">"Where the nervous system is born. Pick-and-place to first PCB in 48 hours."</div>
+          <ul class="floor-card-list">
+            <li><span class="t">SMT Pick-and-Place</span><span class="v">Yamaha YSM20R</span></li>
+            <li><span class="t">Reflow &amp; Rework</span><span class="v">10-zone oven</span></li>
+            <li><span class="t">ISO 7 Cleanroom</span><span class="v">1,200 sq ft</span></li>
+            <li><span class="t">EMC / ESD Bench</span><span class="v">Compliance-grade</span></li>
+          </ul>
+        </div>
+
+        <div class="floor-card" data-floor="4">
+          <div class="floor-card-n">04</div>
+          <div class="floor-card-name">The AI War Room</div>
+          <div class="floor-card-desc">"Every prototype has a brain. This is where it learns."</div>
+          <ul class="floor-card-list">
+            <li><span class="t">H100 Cluster</span><span class="v">8× GPU</span></li>
+            <li><span class="t">Sim Pods</span><span class="v">Isaac · Gazebo</span></li>
+            <li><span class="t">Data Room</span><span class="v">On-prem · 400TB</span></li>
+            <li><span class="t">Quiet Desks</span><span class="v">24 seats</span></li>
+          </ul>
+        </div>
+
+        <div class="floor-card" data-floor="5">
+          <div class="floor-card-n">05</div>
+          <div class="floor-card-name">Scale-Up &amp; Ecosystem</div>
+          <div class="floor-card-desc">"Demo Day stage, media studio, and the room where founders meet investors."</div>
+          <ul class="floor-card-list">
+            <li><span class="t">Demo Stage</span><span class="v">220 seats</span></li>
+            <li><span class="t">Media Studio</span><span class="v">Cinema + audio</span></li>
+            <li><span class="t">Investor Lounge</span><span class="v">Seed → Series A</span></li>
+            <li><span class="t">Founders' Kitchen</span><span class="v">24/7</span></li>
+          </ul>
+        </div>
+
+        <div class="axo-hint">
+          <span>↓ SCROLL TO ASSEMBLE</span>
+          <span class="heat">FLOOR-BY-FLOOR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Equipment stack -->
+  <div class="equip-block">
+    <div class="eyebrow">§ EQUIPMENT STACK · $1M+</div>
+    <div class="equip-grid">
+      <div class="equip-cell reveal"><div class="equip-k">01</div><div class="equip-n">5-axis CNC</div><div class="equip-v">Haas UMC-750</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">02</div><div class="equip-n">Waterjet</div><div class="equip-v">Omax 55100</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">03</div><div class="equip-n">Metal 3D Print</div><div class="equip-v">Markforged Metal X</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">04</div><div class="equip-n">SMT Line</div><div class="equip-v">Yamaha YSM20R</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">05</div><div class="equip-n">ISO 7 Cleanroom</div><div class="equip-v">1,200 sq ft</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">06</div><div class="equip-n">Drone Cage</div><div class="equip-v">40ft · OptiTrack</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">07</div><div class="equip-n">H100 Cluster</div><div class="equip-v">8× GPU · NVLink</div></div>
+      <div class="equip-cell reveal"><div class="equip-k">08</div><div class="equip-n">Media Studio</div><div class="equip-v">Cinema · V-mount</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SPRINT ============================ -->
+<section class="sprint" id="sprint">
+  <div class="sprint-intro">
+    <div class="eyebrow">§ 03 / The 60-day Sprint</div>
+    <h2 class="sprint-hed">
+      Compress <span class="serif heat">18 months</span><br/>
+      of hardware<br/>
+      into <span class="heat">60 days.</span>
+    </h2>
+    <div class="sprint-sub">
+      <div class="sprint-sub-item reveal">
+        <strong>20×</strong>
+        <span>Teams per cohort</span>
+      </div>
+      <div class="sprint-sub-item reveal">
+        <strong>6×</strong>
+        <span>Cohorts per year</span>
+      </div>
+      <div class="sprint-sub-item reveal">
+        <strong>24/7</strong>
+        <span>Facility access</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sprint-track-wrap">
+    <div class="sprint-track-pin">
+      <div class="sprint-track-head">
+        <span>↓ SCROLL · THE 60-DAY SPRINT</span>
+        <span class="heat">▌ LIVE SIMULATION</span>
+      </div>
+      <div class="sprint-track" id="sprintTrack">
+        <div class="sprint-step">
+          <div>
+            <div class="sprint-step-n">STEP 01 · DAYS 1–7</div>
+            <div class="sprint-step-days">ON-<br/>BOARD</div>
+          </div>
+          <div>
+            <div class="sprint-step-title">Move in. Meet your Ghost Lab. File IP.</div>
+            <div class="sprint-step-desc">Move into the factory. Housing handled. IP assignment signed. Architecture review with your assigned technicians.</div>
+          </div>
+          <div class="sprint-step-tag">01/06</div>
+        </div>
+        <div class="sprint-step">
+          <div>
+            <div class="sprint-step-n">STEP 02 · DAYS 8–30</div>
+            <div class="sprint-step-days">RAPID<br/>PROTO</div>
+          </div>
+          <div>
+            <div class="sprint-step-title">First functional prototype by Day 30.</div>
+            <div class="sprint-step-desc">CNC, PCB, cleanroom open 24/7. Ghost Lab executes your spec sheets. You iterate on hardware while you sleep.</div>
+          </div>
+          <div class="sprint-step-tag">02/06</div>
+        </div>
+        <div class="sprint-step">
+          <div>
+            <div class="sprint-step-n">STEP 03 · DAYS 31–45</div>
+            <div class="sprint-step-days">REFINE</div>
+          </div>
+          <div>
+            <div class="sprint-step-title">Regulatory pre-consult · Investor narrative.</div>
+            <div class="sprint-step-desc">On-site FAA/FDA pre-consult. Story-builders help you craft the pitch alongside the product.</div>
+          </div>
+          <div class="sprint-step-tag">03/06</div>
+        </div>
+        <div class="sprint-step">
+          <div>
+            <div class="sprint-step-n">STEP 04 · DAY 45</div>
+            <div class="sprint-step-days">FILM</div>
+          </div>
+          <div>
+            <div class="sprint-step-title">Cinematic launch reel, shot on-site.</div>
+            <div class="sprint-step-desc">Full media studio on Floor 5. Directors, lighting, sound. Every team leaves with a reel that looks like a $200K spot.</div>
+          </div>
+          <div class="sprint-step-tag">04/06</div>
+        </div>
+        <div class="sprint-step">
+          <div>
+            <div class="sprint-step-n">STEP 05 · DAYS 46–58</div>
+            <div class="sprint-step-days">POLISH</div>
+          </div>
+          <div>
+            <div class="sprint-step-title">Rehearsals · pressure-test · extensions.</div>
+            <div class="sprint-step-desc">Investor-in-Residence sessions. Extension offers go out to the standouts. The rest get match-made with seed partners.</div>
+          </div>
+          <div class="sprint-step-tag">05/06</div>
+        </div>
+        <div class="sprint-step">
+          <div>
+            <div class="sprint-step-n">STEP 06 · DAYS 59–60</div>
+            <div class="sprint-step-days heat">DEMO<br/>DAY</div>
+          </div>
+          <div>
+            <div class="sprint-step-title">Curated investor audience. Term sheets on the night.</div>
+            <div class="sprint-step-desc">Seed &amp; Series A investors in the Demo Stage. Walk-out checks are normal, not rare.</div>
+          </div>
+          <div class="sprint-step-tag heat">06/06</div>
+        </div>
+      </div>
+      <div class="sprint-progress">
+        <div class="sprint-progress-bar" id="sprintBar"></div>
+        <div class="sprint-progress-num" id="sprintPct">00%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SECTORS ============================ -->
+<section class="sectors" id="sectors">
+  <div class="sectors-inner">
+    <div class="eyebrow">§ 04 / Sectors We Build</div>
+    <h2 class="sectors-hed">We build where <span class="serif">atoms</span> meet capital.</h2>
+
+    <div class="sectors-table">
+      <div class="sectors-th">SECTOR</div>
+      <div class="sectors-th">WHAT WE SUPPORT</div>
+      <div class="sectors-th">WHO IT'S FOR</div>
+      <div class="sectors-th">FLOOR</div>
+
+      <div class="sectors-row">
+        <div class="sectors-cell name">Robotics</div>
+        <div class="sectors-cell">Cobots, humanoid actuation, autonomous ground, manipulators, field robots.</div>
+        <div class="sectors-cell">ME / EE majors, SLAM researchers, ex-Boston Dynamics, ex-Tesla Optimus.</div>
+        <div class="sectors-cell">02 · Arena</div>
+      </div>
+      <div class="sectors-row">
+        <div class="sectors-cell name">Aerospace &amp; Drones</div>
+        <div class="sectors-cell">UAS airframes, eVTOL, propulsion benches, FAA pre-consult, flight-cage testing.</div>
+        <div class="sectors-cell">Aero engineers, RC builders, ex-SpaceX interns, defense tinkerers.</div>
+        <div class="sectors-cell">02 / 04</div>
+      </div>
+      <div class="sectors-row">
+        <div class="sectors-cell name">AI Hardware</div>
+        <div class="sectors-cell">Edge inference silicon, co-designed boards, training rigs, robotics compute.</div>
+        <div class="sectors-cell">ML systems researchers, FPGA tinkerers, ex-Nvidia, ex-Tenstorrent.</div>
+        <div class="sectors-cell">03 / 04</div>
+      </div>
+      <div class="sectors-row">
+        <div class="sectors-cell name">Medical Devices</div>
+        <div class="sectors-cell">Wearables, diagnostic hardware, surgical tooling, FDA 510(k) pre-work.</div>
+        <div class="sectors-cell">BME majors, MD/PhD, med students, clinical fellows.</div>
+        <div class="sectors-cell">03 · Cleanroom</div>
+      </div>
+      <div class="sectors-row">
+        <div class="sectors-cell name">Defense Tech</div>
+        <div class="sectors-cell">Dual-use systems, autonomy, counter-UAS, secure comms, DoD-aligned IP.</div>
+        <div class="sectors-cell">US citizens, vets, DIU / AFWERX hopefuls, policy-adjacent founders.</div>
+        <div class="sectors-cell">01 / 02 / 04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ THE DEAL ============================ -->
+<section class="economics" id="deal">
+  <div class="economics-inner">
+    <div class="eyebrow">§ 05 / The Deal</div>
+    <h2 class="economics-hed">The simplest deal<br/>in hardware: <span class="serif">five percent.</span></h2>
+
+    <div class="deal-grid">
+      <div class="deal-you">
+        <div class="deal-heading">WHAT YOU PAY</div>
+        <div class="deal-big">5%</div>
+        <div class="deal-sub">Common equity. That's it. Zero cash, zero tuition, zero equipment fees.</div>
+      </div>
+      <div class="deal-divider"></div>
+      <div class="deal-get">
+        <div class="deal-heading">WHAT YOU GET</div>
+        <ul class="deal-list">
+          <li><span class="deal-dot"></span> Private workstation in a 45,000 sq ft factory for 60 days</li>
+          <li><span class="deal-dot"></span> Ghost Lab: 8 specialist technicians executing to your spec</li>
+          <li><span class="deal-dot"></span> $1M+ equipment stack — CNC, PCB, cleanroom, drone cage, H100s</li>
+          <li><span class="deal-dot"></span> On-site housing for the cohort · 24/7 facility access</li>
+          <li><span class="deal-dot"></span> Cinematic launch reel (Floor 5 media studio)</li>
+          <li><span class="deal-dot"></span> On-site FAA / FDA / DoD pre-consult</li>
+          <li><span class="deal-dot"></span> Demo Day in front of curated seed and Series A investors</li>
+          <li><span class="deal-dot"></span> Lifetime alumni access to the facility and crew</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="deal-compare">
+      <div class="deal-compare-row head">
+        <div>PATH</div><div>TIME TO PROTOTYPE</div><div>COST TO FOUNDER</div><div>EQUIPMENT ACCESS</div>
+      </div>
+      <div class="deal-compare-row">
+        <div>Garage / dorm</div><div>12–24 months</div><div>$50K–$200K out of pocket</div><div>Soldering iron</div>
+      </div>
+      <div class="deal-compare-row">
+        <div>University lab</div><div>12–36 months</div><div>IP belongs to the school</div><div>Shared, slow queue</div>
+      </div>
+      <div class="deal-compare-row">
+        <div>Software accelerator</div><div>3 months of talks</div><div>7% equity + they don't build atoms</div><div>None</div>
+      </div>
+      <div class="deal-compare-row us">
+        <div><strong>Hialeah Venture Studio</strong></div><div>60 days</div><div>5% equity · $0 cash</div><div>$1M+ stack · 24/7</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHO WE LOOK FOR ============================ -->
+<section class="ideal" id="ideal">
+  <div class="ideal-inner">
+    <div class="eyebrow">§ 06 / Who We Look For</div>
+    <h2 class="ideal-hed">
+      You don't need a pitch deck.<br/>
+      You need <span class="serif">a summer.</span>
+    </h2>
+
+    <div class="ideal-grid">
+      <div class="ideal-card reveal">
+        <div class="ideal-card-tag">01 · THE STUDENT</div>
+        <div class="ideal-card-title">Active college students</div>
+        <div class="ideal-card-body">Undergrads and grads in engineering, CS, physics, BME, aero, or design who want their summer break to produce a real company instead of an internship deck.</div>
+        <div class="ideal-card-meta">SUMMER COHORT · JUNE 15 – AUG 15</div>
+      </div>
+      <div class="ideal-card reveal">
+        <div class="ideal-card-tag">02 · THE INTERNATIONAL</div>
+        <div class="ideal-card-title">International founders</div>
+        <div class="ideal-card-body">Visa assistance for approved teams (F-1, J-1, O-1 pathways). If you can get here, we'll make the paperwork work — Miami is one of the easiest cities in the US to land in.</div>
+        <div class="ideal-card-meta">VISA LETTERS ON ACCEPTANCE</div>
+      </div>
+      <div class="ideal-card reveal">
+        <div class="ideal-card-tag">03 · THE OUTSIDER</div>
+        <div class="ideal-card-title">Self-taught tinkerers</div>
+        <div class="ideal-card-body">Hackerspace regulars, RC builders, amateur roboticists, drone racers, machinists. No degree required. Proof of build is the only admission criterion.</div>
+        <div class="ideal-card-meta">PORTFOLIO REVIEW · VIDEO OK</div>
+      </div>
+      <div class="ideal-card reveal">
+        <div class="ideal-card-tag">04 · THE TEAM</div>
+        <div class="ideal-card-title">Small existing teams</div>
+        <div class="ideal-card-body">Already co-founded something? Great. We accept 1–4 person teams. Bring your own crew or match with others on the way in.</div>
+        <div class="ideal-card-meta">1 – 4 FOUNDERS</div>
+      </div>
+    </div>
+
+    <div class="ideal-musts">
+      <div class="ideal-musts-label">§ NON-NEGOTIABLES</div>
+      <div class="ideal-musts-grid">
+        <div><strong>01</strong> You ship things. Photos, videos, GitHub, a Fusion file — anything we can touch.</div>
+        <div><strong>02</strong> You can be in Hialeah physically for the full 60 days.</div>
+        <div><strong>03</strong> You're 18 or older. Background check for defense-adjacent builds.</div>
+        <div><strong>04</strong> You are building atoms, not pure software. SaaS founders: apply to YC.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HOW TO APPLY / TIMELINE ============================ -->
+<section class="timeline" id="apply">
+  <div class="timeline-inner">
+    <div class="eyebrow">§ 07 / How to Apply</div>
+    <h2 class="timeline-hed">From <span class="serif">application</span> to the factory floor.</h2>
+
+    <div class="timeline-track">
+      <div class="tl-step">
+        <div class="tl-step-n">01</div>
+        <div class="tl-step-title">Join the waitlist</div>
+        <div class="tl-step-body">Drop your email. We open applications in waves as floors come online.</div>
+        <div class="tl-step-when">NOW</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-step-n">02</div>
+        <div class="tl-step-title">Submit the build</div>
+        <div class="tl-step-body">One page, one video, one thing you've made. No pitch deck required.</div>
+        <div class="tl-step-when">MAY 01</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-step-n">03</div>
+        <div class="tl-step-title">Facility interview</div>
+        <div class="tl-step-body">A 45-minute call with two partners and one Ghost Lab technician.</div>
+        <div class="tl-step-when">MAY 15</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-step-n">04</div>
+        <div class="tl-step-title">Offer + move in</div>
+        <div class="tl-step-body">Accept the 5% term sheet, sign IP, move into Hialeah housing.</div>
+        <div class="tl-step-when">JUN 01</div>
+      </div>
+      <div class="tl-step heat">
+        <div class="tl-step-n">05</div>
+        <div class="tl-step-title">Cohort 01 begins</div>
+        <div class="tl-step-body">Summer 2026. 20 teams. 60 days. One Demo Day.</div>
+        <div class="tl-step-when">JUN 15</div>
+      </div>
+    </div>
+
+    <div class="waitlist" id="waitlist">
+      <div class="waitlist-side">
+        <div class="waitlist-hed">Join the <span class="serif">Summer ’26</span> waitlist.</div>
+        <div class="waitlist-sub">We'll send you the application the moment it opens. No spam, no newsletter — one email, one link.</div>
+        <div class="waitlist-meta">
+          <div><strong>20</strong> SEATS</div>
+          <div><strong>1,200+</strong> ALREADY ON LIST</div>
+          <div><strong>ROLLING</strong> BASIS</div>
+        </div>
+      </div>
+      <form class="waitlist-form" id="waitlistForm" autocomplete="off" onsubmit="return false;">
+        <label class="wl-field">
+          <span>NAME</span>
+          <input type="text" name="name" placeholder="Alex Chen" required />
+        </label>
+        <label class="wl-field">
+          <span>EMAIL</span>
+          <input type="email" name="email" placeholder="you@school.edu" required />
+        </label>
+        <label class="wl-field">
+          <span>SECTOR</span>
+          <select name="sector">
+            <option>Robotics</option>
+            <option>Aerospace / Drones</option>
+            <option>AI Hardware</option>
+            <option>Medical Devices</option>
+            <option>Defense Tech</option>
+            <option>I'll decide on arrival</option>
+          </select>
+        </label>
+        <label class="wl-field">
+          <span>STATUS</span>
+          <select name="status">
+            <option>Active college student</option>
+            <option>Recent graduate</option>
+            <option>International applicant</option>
+            <option>Self-taught / industry</option>
+            <option>Existing team</option>
+          </select>
+        </label>
+        <label class="wl-field span">
+          <span>ONE THING YOU'VE BUILT</span>
+          <input type="text" name="build" placeholder="Link · one sentence · or just tell us" />
+        </label>
+        <button type="submit" class="btn primary wl-btn">
+          Join Waitlist <span class="arrow">→</span>
+        </button>
+        <div class="wl-success" id="wlSuccess">
+          ✓ YOU'RE ON THE LIST. CHECK YOUR INBOX.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="eyebrow">§ 08 / FAQ</div>
+    <h2 class="faq-hed">Questions founders ask.</h2>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span class="faq-q">Do I need to be enrolled in college?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">No. We take students, grads, self-taught founders, international applicants, and working engineers. The only admission criterion is proof of build — photos, video, code, a Fusion file.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">What does 5% equity actually cover?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">Everything. 60 days of facility access, the Ghost Lab crew, $1M+ of equipment, on-site housing, the Demo Day reel, the investor intros, and lifetime alumni access. No hidden fees, no tuition, no cash.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">What if I don't have a co-founder?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">Apply solo. We run a co-founder match process in the two weeks before cohort start. About 30% of our teams form on-site.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">I'm an international student. Does this work?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">Yes. We support F-1 CPT/OPT, J-1, and O-1 pathways. On acceptance we issue an invitation letter and connect you with our immigration partner. Miami is one of the most international-friendly cities in the country.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">Do I keep my IP?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">Yes. The startup owns all IP. The studio takes 5% common equity in the startup — standard cap table, same Delaware C-corp mechanics as YC.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">What happens if we don't finish in 60 days?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">Most teams don't finish. The goal is a working prototype and a pitch — not a shipping product. Standout teams get extension contracts (more time, more budget, sometimes a check) on Demo Day night.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">Can I apply with just an idea?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">No. You need proof of build — a past project, a personal rig, a GitHub, a prototype video, something you've made. The idea can be brand new. The builder can't be.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q">Is software allowed?</span><span class="faq-toggle">+</span></summary>
+        <div class="faq-a">Only as the brain of a hardware product. Pure SaaS / consumer apps / agents belong at YC or Techstars. We build atoms.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CLOSE CTA ============================ -->
+<section class="close" id="close">
+  <div class="close-inner">
+    <div class="eyebrow">§ 09 / Final word</div>
+    <h2 class="close-hed">
+      <span class="b">Stop</span>
+      <span class="serif">pitching.</span>
+      <span class="b">Start <span class="serif" style="color:inherit">building.</span></span>
+    </h2>
+
+    <div class="close-sub-grid">
+      <div>
+        <div class="close-stat-l">COHORT 01</div>
+        <div class="close-stat-v serif">Summer <span class="num">’26</span></div>
+      </div>
+      <div>
+        <div class="close-stat-l">DEADLINE</div>
+        <div class="close-stat-v serif">May <span class="num">01</span></div>
+      </div>
+      <div>
+        <div class="close-stat-l">SEATS</div>
+        <div class="close-stat-v serif"><span class="num">20</span> / 20</div>
+      </div>
+      <div>
+        <div class="close-stat-l">COST</div>
+        <div class="close-stat-v serif"><span class="num">$0</span></div>
+      </div>
+    </div>
+
+    <div class="close-cta">
+      <a href="#waitlist" class="btn primary">Join the Waitlist <span class="arrow">→</span></a>
+      <a href="mailto:hello@hialeahventurestudio.com" class="btn">hello@hialeahventurestudio.com <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="footer-brand">
+    <div class="nav-brand-mark"></div>
+    <span>HIALEAH · VENTURE STUDIO</span>
+  </div>
+  <div>© 2026 · HIALEAH, FL · NW 15TH AVE · M1/M2 INDUSTRIAL</div>
+  <div>N 25.857° · W 80.278°</div>
+</footer>
+
+<script>
+/* ============================================================
+   HIALEAH VENTURE STUDIO — Landing page interactions
+   GSAP + ScrollTrigger + SVG axonometric factory
+   ============================================================ */
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- nav links ---------- */
+document.querySelectorAll('.nav-links span').forEach(el => {
+  el.addEventListener('click', () => {
+    const to = document.getElementById(el.dataset.to);
+    if (to) window.scrollTo({ top: to.offsetTop - 60, behavior: 'smooth' });
+  });
+});
+
+/* ============================================================
+   HERO — title reveal + canvas particles
+   ============================================================ */
+(function heroIntro() {
+  const words = document.querySelectorAll('.hero-title .word');
+  gsap.set(words, { y: '110%', opacity: 0 });
+  gsap.to(words, {
+    y: '0%', opacity: 1, duration: 1.2, ease: 'power4.out',
+    stagger: 0.08, delay: 0.15,
+  });
+  gsap.from('.hero-bottom > div', {
+    opacity: 0, y: 24, duration: 0.9, ease: 'power3.out',
+    stagger: 0.08, delay: 0.8,
+  });
+  gsap.from('.hero-top-meta > div', {
+    opacity: 0, y: -10, duration: 0.6, stagger: 0.06, delay: 0.1,
+  });
+  gsap.from('.hero-cta-row .btn', {
+    opacity: 0, y: 20, duration: 0.8, ease: 'power3.out',
+    stagger: 0.1, delay: 1.4,
+  });
+})();
+
+(function heroCanvas() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr; let particles = [];
+
+  function resize() {
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    w = canvas.clientWidth = canvas.parentElement.clientWidth;
+    h = canvas.clientHeight = canvas.parentElement.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    particles = [];
+    const count = Math.min(80, Math.floor((w * h) / 18000));
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w, y: Math.random() * h,
+        z: Math.random() * 0.8 + 0.2,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        r: Math.random() * 1.4 + 0.3,
+      });
+    }
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  let mx = 0, my = 0, tmx = 0, tmy = 0;
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    tmx = (e.clientX - rect.left - w / 2) / w;
+    tmy = (e.clientY - rect.top - h / 2) / h;
+  });
+  function loop() {
+    mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(245, 241, 232, 0.03)'; ctx.lineWidth = 1;
+    const g = 80;
+    const ox = (mx * 20) % g; const oy = (my * 20) % g;
+    for (let x = -ox; x < w; x += g) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = -oy; y < h; y += g) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+    for (const p of particles) {
+      p.x += p.vx + mx * 6 * p.z; p.y += p.vy + my * 6 * p.z;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+      ctx.fillStyle = `rgba(255, 74, 28, ${0.2 + p.z * 0.4})`;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * p.z * 1.5, 0, Math.PI * 2); ctx.fill();
+    }
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 140) {
+          ctx.strokeStyle = `rgba(245, 241, 232, ${(1 - d / 140) * 0.08})`;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ============================================================
+   GLOBAL reveal observer
+   ============================================================ */
+(function reveals() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12, rootMargin: '-40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+/* ============================================================
+   Number counters
+   ============================================================ */
+(function counters() {
+  const format = (v, suffix) => {
+    if (suffix === '%') return Math.round(v) + '%';
+    if (suffix === 'K') return Math.round(v) + 'K';
+    if (suffix === '×') return Math.round(v) + '×';
+    if (suffix === '/yr') return Math.round(v) + '/yr';
+    return Math.round(v) + (suffix || '');
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const end = parseFloat(el.dataset.counter);
+      const suffix = el.dataset.suffix || '';
+      const obj = { v: 0 };
+      gsap.to(obj, { v: end, duration: 2, ease: 'power3.out',
+        onUpdate: () => { el.textContent = format(obj.v, suffix); },
+      });
+      io.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-counter]').forEach(el => io.observe(el));
+})();
+
+/* ============================================================
+   SPRINT — horizontal scroll
+   ============================================================ */
+(function sprint() {
+  const track = document.getElementById('sprintTrack');
+  const wrap = document.querySelector('.sprint-track-wrap');
+  if (!track || !wrap) return;
+  const bar = document.getElementById('sprintBar');
+  const pct = document.getElementById('sprintPct');
+  function setup() {
+    const distance = track.scrollWidth - window.innerWidth + 96;
+    ScrollTrigger.create({
+      trigger: wrap, start: 'top top', end: () => '+=' + distance,
+      scrub: 0.6, pin: '.sprint-track-pin', anticipatePin: 1,
+      onUpdate: (self) => {
+        const x = -distance * self.progress;
+        gsap.set(track, { x });
+        const p = Math.round(self.progress * 100);
+        bar.style.setProperty('--sp', p + '%');
+        pct.textContent = String(p).padStart(2, '0') + '%';
+      },
+    });
+  }
+  setup();
+  window.addEventListener('resize', () => ScrollTrigger.refresh());
+})();
+
+/* ============================================================
+   AXONOMETRIC FACTORY — SVG build-up on scroll
+   ============================================================ */
+(function axonometric() {
+  const scene = document.getElementById('axoScene');
+  const svg = document.getElementById('axoSvg');
+  const floorsG = document.getElementById('axoFloors');
+  const groundG = document.getElementById('axoGround');
+  const fxG = document.getElementById('axoFx');
+  if (!scene || !svg) return;
+
+  // --- Axonometric projection (dimetric, approx 30° angles) ---
+  // We project a 3D point (x, y, z) to 2D where:
+  //   x-axis goes right-down, y-axis goes up (height), z-axis goes left-down
+  const ANG = Math.PI / 6; // 30deg
+  const CX = Math.cos(ANG), SX = Math.sin(ANG);
+  function iso(x, y, z) {
+    // x: depth along one floor axis, z: width, y: vertical
+    const px = (x - z) * CX;
+    const py = -(y) + (x + z) * SX;
+    return { x: px, y: py };
+  }
+
+  // --- Build ground ---
+  // 10x10 plate grid
+  const GRID = 10;
+  const CELL = 28; // unit size
+  // origin shift
+  const OX = 180, OY = 160;
+
+  function pt(p) { return (p.x + OX) + ',' + (p.y + OY); }
+
+  // Ground plate — big diamond
+  const plateW = GRID * CELL;
+  const plateCorners = [
+    iso(0, 0, 0),
+    iso(plateW, 0, 0),
+    iso(plateW, 0, plateW),
+    iso(0, 0, plateW),
+  ];
+  const plate = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  plate.setAttribute('points', plateCorners.map(pt).join(' '));
+  plate.setAttribute('fill', 'rgba(20, 16, 14, 0.8)');
+  plate.setAttribute('stroke', 'rgba(255, 74, 28, 0.35)');
+  plate.setAttribute('stroke-width', '1');
+  plate.setAttribute('class', 'ground-line');
+  groundG.appendChild(plate);
+
+  // Grid lines on plate
+  for (let i = 1; i < GRID; i++) {
+    const a = iso(i * CELL, 0, 0);
+    const b = iso(i * CELL, 0, plateW);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', a.x + OX); line.setAttribute('y1', a.y + OY);
+    line.setAttribute('x2', b.x + OX); line.setAttribute('y2', b.y + OY);
+    line.setAttribute('class', 'ground-grid');
+    groundG.appendChild(line);
+
+    const c = iso(0, 0, i * CELL);
+    const d = iso(plateW, 0, i * CELL);
+    const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line2.setAttribute('x1', c.x + OX); line2.setAttribute('y1', c.y + OY);
+    line2.setAttribute('x2', d.x + OX); line2.setAttribute('y2', d.y + OY);
+    line2.setAttribute('class', 'ground-grid');
+    groundG.appendChild(line2);
+  }
+
+  // --- Build 5 floors (stacked) ---
+  // Each floor is a cuboid. Size: W x H x W (sitting on plate).
+  const FLOOR_W = 7 * CELL; // inner footprint
+  const FLOOR_H = 46;        // height
+  const MARGIN = (plateW - FLOOR_W) / 2;
+
+  const floorMeta = [
+    { n: '01', label: 'HEAVY WORKS' },
+    { n: '02', label: 'ROBOTICS ARENA' },
+    { n: '03', label: 'ELECTRONICS · CLEAN' },
+    { n: '04', label: 'AI WAR ROOM' },
+    { n: '05', label: 'SCALE-UP · ECOSYSTEM' },
+  ];
+
+  const floorElems = [];
+
+  for (let f = 0; f < 5; f++) {
+    const yBase = f * FLOOR_H;
+    const yTop = (f + 1) * FLOOR_H;
+
+    // 8 corners of this floor's cuboid
+    const c = {
+      a: iso(MARGIN, yBase, MARGIN),
+      b: iso(MARGIN + FLOOR_W, yBase, MARGIN),
+      c: iso(MARGIN + FLOOR_W, yBase, MARGIN + FLOOR_W),
+      d: iso(MARGIN, yBase, MARGIN + FLOOR_W),
+      e: iso(MARGIN, yTop, MARGIN),
+      ff: iso(MARGIN + FLOOR_W, yTop, MARGIN),
+      g: iso(MARGIN + FLOOR_W, yTop, MARGIN + FLOOR_W),
+      h: iso(MARGIN, yTop, MARGIN + FLOOR_W),
+    };
+
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'axo-floor');
+    g.dataset.floor = String(f + 1);
+    // Initially hidden (we animate in)
+    g.style.opacity = '0';
+    g.style.transform = 'translateY(-40px)';
+    g.style.transition = 'opacity 0.6s, transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1)';
+
+    // right face (b, ff, g, c)
+    const rightFace = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    rightFace.setAttribute('points', [c.b, c.ff, c.g, c.c].map(pt).join(' '));
+    rightFace.setAttribute('class', 'floor-shape side');
+    rightFace.dataset.floor = String(f + 1);
+    rightFace.dataset.part = 'side';
+    g.appendChild(rightFace);
+
+    // left face (a, e, h, d)
+    const leftFace = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    leftFace.setAttribute('points', [c.d, c.h, c.e, c.a].map(pt).join(' '));
+    leftFace.setAttribute('class', 'floor-shape side');
+    leftFace.dataset.floor = String(f + 1);
+    leftFace.dataset.part = 'side';
+    g.appendChild(leftFace);
+
+    // top face (e, ff, g, h)
+    const topFace = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    topFace.setAttribute('points', [c.e, c.ff, c.g, c.h].map(pt).join(' '));
+    topFace.setAttribute('class', 'floor-shape top');
+    topFace.dataset.floor = String(f + 1);
+    topFace.dataset.part = 'top';
+    g.appendChild(topFace);
+
+    // Detail lines on right face — window divisions
+    for (let k = 1; k < 5; k++) {
+      const fy = yBase + (FLOOR_H * k / 5);
+      const p1 = iso(MARGIN + FLOOR_W, fy, MARGIN);
+      const p2 = iso(MARGIN + FLOOR_W, fy, MARGIN + FLOOR_W);
+      const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      ln.setAttribute('x1', p1.x + OX); ln.setAttribute('y1', p1.y + OY);
+      ln.setAttribute('x2', p2.x + OX); ln.setAttribute('y2', p2.y + OY);
+      ln.setAttribute('class', 'floor-detail');
+      g.appendChild(ln);
+    }
+
+    // Window vertical divisions on right face
+    for (let k = 1; k < 6; k++) {
+      const pos = MARGIN + (FLOOR_W * k / 6);
+      const p1 = iso(MARGIN + FLOOR_W, yBase + 4, pos);
+      const p2 = iso(MARGIN + FLOOR_W, yTop - 4, pos);
+      const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      ln.setAttribute('x1', p1.x + OX); ln.setAttribute('y1', p1.y + OY);
+      ln.setAttribute('x2', p2.x + OX); ln.setAttribute('y2', p2.y + OY);
+      ln.setAttribute('class', 'floor-detail');
+      g.appendChild(ln);
+    }
+
+    // Floor label on top - number in italic
+    const labelPos = iso(MARGIN + FLOOR_W * 0.1, yTop, MARGIN + FLOOR_W * 0.5);
+    const nEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    nEl.setAttribute('x', labelPos.x + OX);
+    nEl.setAttribute('y', labelPos.y + OY + 6);
+    nEl.setAttribute('class', 'floor-number');
+    nEl.dataset.floor = String(f + 1);
+    nEl.textContent = floorMeta[f].n;
+    g.appendChild(nEl);
+
+    // Label line off to the right
+    const labelEnd = iso(MARGIN + FLOOR_W + CELL, yBase + FLOOR_H / 2, MARGIN + FLOOR_W);
+    const labelTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    labelTxt.setAttribute('x', labelEnd.x + OX + 12);
+    labelTxt.setAttribute('y', labelEnd.y + OY + 4);
+    labelTxt.setAttribute('class', 'floor-label');
+    labelTxt.dataset.floor = String(f + 1);
+    labelTxt.textContent = floorMeta[f].label;
+    g.appendChild(labelTxt);
+
+    // Tiny connector tick
+    const tickStart = iso(MARGIN + FLOOR_W, yBase + FLOOR_H / 2, MARGIN + FLOOR_W);
+    const tickLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    tickLine.setAttribute('x1', tickStart.x + OX);
+    tickLine.setAttribute('y1', tickStart.y + OY);
+    tickLine.setAttribute('x2', labelEnd.x + OX + 8);
+    tickLine.setAttribute('y2', labelEnd.y + OY);
+    tickLine.setAttribute('class', 'floor-detail');
+    tickLine.dataset.floor = String(f + 1);
+    g.appendChild(tickLine);
+
+    floorsG.appendChild(g);
+    floorElems.push(g);
+  }
+
+  // --- FX: little drones / moving crates ---
+  const fxItems = [];
+  for (let i = 0; i < 3; i++) {
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('r', '3');
+    dot.setAttribute('class', 'drone');
+    dot.setAttribute('opacity', '0');
+    fxG.appendChild(dot);
+    fxItems.push({ el: dot, offset: Math.random() });
+  }
+
+  // --- Progress label + floor card hook ---
+  const progressEl = document.getElementById('axoProgress');
+  const floorIdx = document.getElementById('floorIdx');
+  const floorCards = document.querySelectorAll('.floor-card');
+
+  let currentFloor = 1;
+  function setActiveFloor(n) {
+    if (n === currentFloor) return;
+    currentFloor = n;
+    floorElems.forEach((g, i) => {
+      const shapes = g.querySelectorAll('.floor-shape, .floor-number, .floor-label');
+      shapes.forEach(s => {
+        s.classList.toggle('active', i + 1 === n);
+      });
+    });
+    floorCards.forEach(c => c.classList.toggle('active', +c.dataset.floor === n));
+    floorIdx.textContent = String(n).padStart(2, '0') + ' / 05';
+  }
+  setActiveFloor(1);
+
+  function setFloorVisibility(progress) {
+    // Each floor appears at 0.1, 0.25, 0.40, 0.55, 0.70
+    const starts = [0.06, 0.20, 0.35, 0.50, 0.65];
+    floorElems.forEach((g, i) => {
+      const s = starts[i];
+      const localP = Math.min(1, Math.max(0, (progress - s) / 0.15));
+      const ease = 1 - Math.pow(1 - localP, 3);
+      g.style.opacity = String(ease);
+      g.style.transform = `translateY(${-40 * (1 - ease)}px)`;
+    });
+  }
+
+  // Trigger
+  ScrollTrigger.create({
+    trigger: scene,
+    start: 'top top',
+    end: 'bottom bottom',
+    pin: '.axo-pin',
+    anticipatePin: 1,
+    scrub: 0.5,
+    onUpdate: (self) => {
+      const p = self.progress;
+      progressEl.textContent = String(Math.round(p * 100)).padStart(2, '0') + '%';
+      setFloorVisibility(p);
+
+      // Active floor follows the progress past construction
+      // Once all floors built (p>0.78), cycle through focus
+      if (p < 0.78) {
+        // highlight the latest-building floor
+        const idx = Math.min(5, Math.max(1, Math.floor(p / 0.15) + 1));
+        setActiveFloor(idx);
+      } else {
+        // focus cycling 1..5 across the remaining range
+        const focusP = (p - 0.78) / 0.22;
+        const idx = Math.min(5, Math.floor(focusP * 5) + 1);
+        setActiveFloor(idx);
+      }
+
+      // FX drones
+      fxItems.forEach((item, i) => {
+        const t = (p * 2 + item.offset) % 1;
+        const floor = (i + 1) * FLOOR_H;
+        const x = MARGIN + FLOOR_W * t;
+        const y = floor + FLOOR_H + 10 + Math.sin(t * Math.PI * 2) * 6;
+        const z = MARGIN + FLOOR_W * 0.5;
+        const q = iso(x, y, z);
+        item.el.setAttribute('cx', q.x + OX);
+        item.el.setAttribute('cy', q.y + OY);
+        item.el.setAttribute('opacity', p > 0.2 ? '0.8' : '0');
+      });
+    },
+  });
+})();
+
+/* ============================================================
+   Section heading line reveals
+   ============================================================ */
+(function bigHedReveals() {
+  const selectors = [
+    '.problem-hed', '.facility-hed', '.sprint-hed', '.sectors-hed',
+    '.economics-hed', '.ideal-hed', '.timeline-hed', '.faq-hed', '.close-hed'
+  ];
+  selectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: () => {
+          gsap.from(el, { y: 60, opacity: 0, duration: 1.1, ease: 'power4.out' });
+        },
+        once: true,
+      });
+    });
+  });
+})();
+
+/* ============================================================
+   WAITLIST FORM
+   ============================================================ */
+(function waitlist() {
+  const form = document.getElementById('waitlistForm');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const success = document.getElementById('wlSuccess');
+    btn.textContent = 'SUBMITTING...';
+    setTimeout(() => {
+      btn.style.display = 'none';
+      success.classList.add('show');
+      form.querySelectorAll('input, select').forEach(el => el.disabled = true);
+      gsap.from(success, { opacity: 0, y: 10, duration: 0.5 });
+    }, 800);
+  });
+})();
+
+</script>
+</body>
+</html>
